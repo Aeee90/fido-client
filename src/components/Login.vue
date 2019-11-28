@@ -28,7 +28,7 @@
         </select>
       </label><br/>
       <label>txAuthSimple Extension<input type="text" name="txAuthExtension"></label><br/>
-      <button type="button" class="btn-send">Register</button>
+      <button type="button" class="btn-send" v-on:click="getPublicKeyCredentialCreationOptions">Register</button>
       <p class="login-copyright">
         CREATED BY Siena Republic<br/>
         COPYRIGHT @ 2019 PL. ALL RIGHTS RESERVED.</p>
@@ -61,8 +61,8 @@
       }
     }
     , methods: {
-      getRandomString: function () {
-        axios.get('http://localhost:4000/credential/string')
+      getPublicKeyCredentialCreationOptions: function () {
+        axios.get('http://localhost:4000/webauth/credential/sps1122')
           .then(function (response) {
             console.log(response)
           }).catch(function (error) {
