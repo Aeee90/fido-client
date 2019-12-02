@@ -4,12 +4,31 @@
     <div id="wrap2"></div>
     <div class="wrapper-box">
       <p class="login-title">Project Nautilus </p>
-      <div class="oauth-box">
-        <img src="../assets/facebook.png" style="width: 25px; height: 25px;" />
-      </div>
-      <label>Email<input type="email" name="email" placeholder="example_email"/></label><br/>
-      <label>Password<input type="password" name="password" placeholder="example_password"/></label><br/>
-      <button type="button" class="btn-send" v-on:click="getPublicKeyCredentialCreationOptions">Login</button>
+      <label>User Name<input type="text" name="userName" placeholder="example_username"/></label><br/>
+      <label>Attenstaion Type<select name="attType">
+          <option value="none" selected>None</option>
+          <option value="indirect">Indirect</option>
+          <option value="direct">Direct</option>
+        </select>
+      </label><br/>
+      <label>Authentictor Type<select name="authType">
+          <option value="unspecified" selected>Unspecified</option>
+          <option value="cross-platform">Cross platform</option>
+          <option value="platform">Platform (TPM)</option>
+        </select>
+      </label><br/>
+      <label>User Verification<select name="userVerification">
+          <option value="discouraged" selected>Discouraged</option>
+          <option value="preferred">Preferred</option>
+        </select>
+      </label><br/>
+      <label>Register with Resident Key<select name="residentKeyRequirement">
+          <option value="false" selected>Not Required</option>
+          <option value="true">Required</option>
+        </select>
+      </label><br/>
+      <label>txAuthSimple Extension<input type="text" name="txAuthExtension"></label><br/>
+      <button type="button" class="btn-send" v-on:click="getPublicKeyCredentialCreationOptions">Register</button>
       <p class="login-copyright">
         CREATED BY Siena Republic<br/>
         COPYRIGHT @ 2019 PL. ALL RIGHTS RESERVED.</p>
@@ -19,6 +38,17 @@
 
 <script>
   import axios from 'axios/index'
+
+  const state = {
+    createResponse: null
+    , publicKeyCredential: null
+    , credential: null
+    , userName: ""
+  };
+
+  const makeCredential = function(){
+
+  };
 
   export default {
     name: 'Login',
@@ -84,8 +114,7 @@
   .wrapper-box {
     width: 500px;
     position: absolute;
-    margin: -250px 0 0 -250px;
-    top: 50%;
+    margin: 0 0 0 -250px;
     left: 50%;
   }
 
@@ -93,7 +122,7 @@
     text-align: center;
     font-size: 30px;
     color: #ffffff;
-    margin-bottom: 5px;
+    margin-bottom: 60px
   }
 
   .wrapper-box > label {
@@ -147,10 +176,5 @@
     word-spacing: 3px;
     margin-top: 20px;
     text-align: center
-  }
-
-  .oauth-box {
-    text-align: right;
-    margin-bottom: 60px;
   }
 </style>
